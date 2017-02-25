@@ -1,0 +1,8 @@
+name: XenforoIntegration
+main: net.ultimatemc.xenforointegration.XenforoIntegration
+version: 1.0
+description: Integrates Xenforo with Minecraft
+commands:
+   register:
+     description: Register on Xenforo
+     usage: &cUsage: /register <email>
