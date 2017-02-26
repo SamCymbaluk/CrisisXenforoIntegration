@@ -5,4 +5,4 @@ description: Integrates Xenforo with Minecraft
 commands:
    register:
      description: Register on Xenforo
-     usage: &cUsage: /register <email>
+     usage: '&c/register <email>'
