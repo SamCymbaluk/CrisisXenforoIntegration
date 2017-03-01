@@ -1,6 +1,5 @@
 package commands;
 
-import net.ultimatemc.xenforointegration.ListenerClass;
 import net.ultimatemc.xenforointegration.XenforoIntegration;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,7 +14,6 @@ public class WebCommand implements CommandExecutor {
     public WebCommand(XenforoIntegration plugin, UserLoader userLoader) {
         this.plugin = plugin;
         this.userLoader = userLoader;
-        new ListenerClass(plugin, userLoader);
     }
 
     @Override

@@ -1,6 +1,9 @@
 package net.ultimatemc.xenforointegration;
 
 import commands.RegisterCommand;
+import commands.WebCommand;
+import managers.ManagerHandler;
+import managers.NameManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,10 +22,12 @@ public class XenforoIntegration extends JavaPlugin {
     private Map<String, Integer> users = new ConcurrentHashMap<>();
     public XenApiWrapper xenApi;
     private UserLoader userLoader;
+    private ManagerHandler managerHandler;
     private Config config;
 
     @Override
     public void onEnable() {
+
         try {
             File dataFolder = this.getDataFolder();
             dataFolder.mkdir();
@@ -37,10 +42,19 @@ public class XenforoIntegration extends JavaPlugin {
         //db = new SqlDatabase(this, "jdbc:mysql://localhost:3306/xenforo", "root", "e262Y%39f0d7e956642#0((47d19fc9e94c"); //Local
         //xenApi = new XenApiWrapper("https://ultimatemc.net/api.php", "6f78c25a93b4c327846ce0f50c5e675ba35d271518471d8228c0850ecd3f5aab");
         xenApi = new XenApiWrapper(config.getWebsite().getApiUrl(), config.getWebsite().getApiKey());
-        userLoader = new UserLoader(this, db);
 
+        //Load Managers
+        managerHandler = new ManagerHandler(this, xenApi);
+        managerHandler.addManager(new NameManager(this));
+
+        userLoader = new UserLoader(this, db, managerHandler);
+
+        //Register commands
         this.getCommand("register").setExecutor(new RegisterCommand(this, userLoader));
-        //this.getCommand("web").setExecutor(new WebCommand(this, userLoader));
+        this.getCommand("web").setExecutor(new WebCommand(this, userLoader));
+
+        //Listeners
+        new ListenerClass(this, userLoader);
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             userLoader.loadUser(p.getUniqueId().toString());

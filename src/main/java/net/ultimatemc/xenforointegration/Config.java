@@ -1,5 +1,8 @@
 package net.ultimatemc.xenforointegration;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class Config {
 
     private Database database = new Database(
@@ -13,6 +16,14 @@ public class Config {
             "my_api_key"
     );
 
+    /**
+     * Defines the unique permission that should be used to identify which users below to which xenforo groups
+     * Xenforo groups are represented by their group ids (Integer).
+     * Should be in descending order of rank importance/inheritance
+     */
+    private Map<String, Integer> groupPermissions = new LinkedHashMap<String, Integer>() {{
+        put("rank_permission", -1);
+    }};
 
 
     public Database getDatabase() {
@@ -21,6 +32,10 @@ public class Config {
 
     public Website getWebsite() {
         return website;
+    }
+
+    public Map<String, Integer> getGroupPermissions() {
+        return groupPermissions;
     }
 
     class Database {

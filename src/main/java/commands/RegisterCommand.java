@@ -1,7 +1,6 @@
 package commands;
 
 import com.google.gson.JsonObject;
-import net.ultimatemc.xenforointegration.ListenerClass;
 import net.ultimatemc.xenforointegration.XenforoIntegration;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -24,12 +23,10 @@ public class RegisterCommand implements CommandExecutor {
     public RegisterCommand(XenforoIntegration plugin, UserLoader userLoader) {
         this.plugin = plugin;
         this.userLoader = userLoader;
-        new ListenerClass(plugin, userLoader);
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        System.out.println(args.length);
         if (args.length == 1) {
             if (!(sender instanceof Player)) {
                 sender.sendMessage(ChatColor.RED + "This command must be executed by a player.");

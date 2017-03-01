@@ -6,3 +6,5 @@ commands:
    register:
      description: Register on Xenforo
      usage: '&c/register <email>'
+   web:
+     description: Base command for web interaction

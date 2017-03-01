@@ -3,6 +3,7 @@ package net.ultimatemc.xenforointegration;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,12 +44,20 @@ public class XenApiWrapper {
 
     private JsonObject readFromUrl(URL url) {
         String jsonStr = "";
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));) {
+        try {
+            HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
             String inputLine;
             while ((inputLine = in.readLine()) != null) jsonStr = jsonStr + inputLine;
+
+            in.close();
         } catch (IOException e) {
+            e.printStackTrace();
             return null;
         }
+
+        System.out.println("Executed XenApi Query: " + jsonStr);
 
         return (new JsonParser()).parse(jsonStr).getAsJsonObject();
     }
