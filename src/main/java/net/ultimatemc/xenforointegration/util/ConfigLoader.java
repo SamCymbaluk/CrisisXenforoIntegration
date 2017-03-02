@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package util;
+package net.ultimatemc.xenforointegration.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,22 +48,21 @@ public class ConfigLoader {
      * Loads a provided config object from a given JSON file.
      * If the file does not exist it also creates the file using the given object defaults
      *
-     * @param config The object type you wish to load, also dictates the class of the returned object
+     * @param clazz The object type you wish to load, also dictates the class of the returned object
      * @param file   The file that is to be created/read from
      * @return The object loaded from file
      * @throws IOException
      */
-    public static Object loadConfig(Object config, File file) throws IOException {
+    public static <T> T loadConfig(Class<T> clazz, File file) throws IOException {
         if (file.createNewFile()) { //File does not exist, save to file
-            String json = gson.toJson(parser.parse(gson.toJson(config)));
+            String json = gson.toJson(parser.parse(gson.toJson(clazz)));
             try (PrintWriter out = new PrintWriter(file)) {
                 out.println(json);
             }
         } else { //File exists, load from file
-            return gson.fromJson(new String(Files.readAllBytes(file.toPath())), config.getClass());
+            return gson.fromJson(new String(Files.readAllBytes(file.toPath())), clazz);
         }
-
-        return config;
+        return null;
     }
 
     /**

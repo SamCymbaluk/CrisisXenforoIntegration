@@ -1,4 +1,4 @@
-package managers;
+package net.ultimatemc.xenforointegration.managers;
 
 import net.ultimatemc.xenforointegration.XenforoIntegration;
 import org.bukkit.entity.Player;

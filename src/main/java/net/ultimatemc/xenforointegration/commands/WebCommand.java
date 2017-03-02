@@ -1,10 +1,10 @@
-package commands;
+package net.ultimatemc.xenforointegration.commands;
 
 import net.ultimatemc.xenforointegration.XenforoIntegration;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import storage.UserLoader;
+import net.ultimatemc.xenforointegration.storage.UserLoader;
 
 public class WebCommand implements CommandExecutor {
 

@@ -1,4 +1,4 @@
-package commands;
+package net.ultimatemc.xenforointegration.commands;
 
 import com.google.gson.JsonObject;
 import net.ultimatemc.xenforointegration.XenforoIntegration;
@@ -7,8 +7,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import storage.UserLoader;
-import util.InputUtil;
+import net.ultimatemc.xenforointegration.storage.UserLoader;
+import net.ultimatemc.xenforointegration.util.InputUtil;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package util;
+package net.ultimatemc.xenforointegration.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

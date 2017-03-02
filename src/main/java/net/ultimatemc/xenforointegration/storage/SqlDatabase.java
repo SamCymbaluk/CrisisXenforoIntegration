@@ -1,4 +1,4 @@
-package storage;
+package net.ultimatemc.xenforointegration.storage;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

@@ -1,7 +1,7 @@
-package storage;
+package net.ultimatemc.xenforointegration.storage;
 
 import com.zaxxer.hikari.HikariDataSource;
-import managers.ManagerHandler;
+import net.ultimatemc.xenforointegration.managers.ManagerHandler;
 import net.ultimatemc.xenforointegration.XenforoIntegration;
 import org.bukkit.Bukkit;
 

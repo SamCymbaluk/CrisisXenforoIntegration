@@ -1,15 +1,15 @@
 package net.ultimatemc.xenforointegration;
 
-import commands.RegisterCommand;
-import commands.WebCommand;
-import managers.ManagerHandler;
-import managers.NameManager;
+import net.ultimatemc.xenforointegration.commands.RegisterCommand;
+import net.ultimatemc.xenforointegration.commands.WebCommand;
+import net.ultimatemc.xenforointegration.managers.ManagerHandler;
+import net.ultimatemc.xenforointegration.managers.NameManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import storage.SqlDatabase;
-import storage.UserLoader;
-import util.ConfigLoader;
+import net.ultimatemc.xenforointegration.storage.SqlDatabase;
+import net.ultimatemc.xenforointegration.storage.UserLoader;
+import net.ultimatemc.xenforointegration.util.ConfigLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class XenforoIntegration extends JavaPlugin {
         try {
             File dataFolder = this.getDataFolder();
             dataFolder.mkdir();
-            config = (Config) ConfigLoader.loadConfig(new Config(), new File(this.getDataFolder().getPath() + File.separator + "config.json"));
+            config = ConfigLoader.loadConfig(Config.class, new File(this.getDataFolder().getPath() + File.separator + "config.json"));
         } catch (IOException ex) {
             ex.printStackTrace();
             System.err.println("Error loading XenforoIntegration config");
