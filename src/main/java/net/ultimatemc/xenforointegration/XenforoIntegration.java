@@ -38,9 +38,6 @@ public class XenforoIntegration extends JavaPlugin {
             return;
         }
         db = new SqlDatabase(this, config.getDatabase().getHost(), config.getDatabase().getUser(), config.getDatabase().getPassword());
-        //db = new SqlDatabase(this, "jdbc:mysql://ultimatemc.net:3306/web", "xenforo", "QJMTEz1ulJRwtqyuQYkb"); //Remote
-        //db = new SqlDatabase(this, "jdbc:mysql://localhost:3306/xenforo", "root", "e262Y%39f0d7e956642#0((47d19fc9e94c"); //Local
-        //xenApi = new XenApiWrapper("https://ultimatemc.net/api.php", "6f78c25a93b4c327846ce0f50c5e675ba35d271518471d8228c0850ecd3f5aab");
         xenApi = new XenApiWrapper(config.getWebsite().getApiUrl(), config.getWebsite().getApiKey());
 
         //Load Managers
